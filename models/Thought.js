@@ -1,27 +1,5 @@
 const { Schema, model } = require('mongoose');
-
-// The reactionSchema defines th shape for reactions subdocument
-const reactionSchema = new Schema(
-  {
-    reactionId: { type: Schema.Types.ObjectId, default: ObjectId },
-    reactionBody: {
-      type: String,
-      required: true,
-      maxLength: 400
-    },
-    username: {
-      type: String,
-      required: true
-    },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-      get: (date) => {
-        return date.toLocaleDateString();
-      }
-    }
-  }
-);
+const Reaction = require('./Reaction');
 
 // Schema to create Thought model
 const thoughtSchema = new Schema(
@@ -43,7 +21,7 @@ const thoughtSchema = new Schema(
       type: String,
       required: true
     },
-    reactions: [reactionSchema],
+    reactions: [Reaction],
   },
   {
     toJSON: {
